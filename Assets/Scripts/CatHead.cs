@@ -4,9 +4,8 @@ using System.Collections;
 public class CatHead : MonoBehaviour
 {
     [SerializeField]
-    [Tooltip("A transform to follow")]
-    Transform target;
-
+    Transform m_target;
+    
     // Use this for initialization
     void Start()
     {
@@ -15,6 +14,6 @@ public class CatHead : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        transform.LookAt(target);
+        transform.LookAt(m_target);
     }
 }
