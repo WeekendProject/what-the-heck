@@ -10,6 +10,7 @@ GameObject:
   - 4: {fileID: 414842}
   - 33: {fileID: 3301326}
   - 114: {fileID: 11419076}
+  - 114: {fileID: 11421348}
   - 23: {fileID: 2306596}
   m_Layer: 0
   m_Name: Laser Beam
@@ -77,8 +78,23 @@ MonoBehaviour:
   m_startPos: {x: 0, y: 0, z: 0}
   m_endPos: {x: 0, y: 0, z: 55}
   m_setLinePropertiesAtStart: 0
-  m_lineColor: {r: 1, g: 0.93103445, b: 0, a: 1}
-  m_lineWidth: 0
+  m_lineColor: {r: 1, g: 0, b: 0, a: 1}
+  m_lineWidth: 5.81
+  m_lightSaberFactor: 0.9
+--- !u!114 &11421348
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 197496}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4d6114799b1712449bfeb08f5beeb45f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_minFactor: 0.1
+  m_maxFactor: 1
+  m_speed: 100
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1
