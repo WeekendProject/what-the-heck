@@ -27,6 +27,7 @@ namespace VolumetricLines
 	{
 		private bool m_updateLineColor;
 		private bool m_updateLineWidth;
+        private bool m_updateLightSaberFactor;
 
 		#region private variables
 		/// <summary>
@@ -64,9 +65,15 @@ namespace VolumetricLines
 		[SerializeField] 
 		[HideInInspector]
 		private float m_lineWidth;
-		
 
-		private static readonly Vector2[] m_vline_texCoords = {
+        /// <summary>
+		/// The width of the line
+		/// </summary>
+		[SerializeField]
+        [HideInInspector]
+        private float m_lightSaberFactor;
+
+        private static readonly Vector2[] m_vline_texCoords = {
 			new Vector2(1.0f, 1.0f),
 			new Vector2(1.0f, 0.0f),
 			new Vector2(0.5f, 1.0f),
@@ -162,13 +169,24 @@ namespace VolumetricLines
 			get { return m_lineWidth; }
 			set { m_lineWidth = value; m_updateLineWidth = true; }
 		}
-		#endregion
+        
+        /// <summary>
+        /// Gets or sets the saber factor of the line. This can be used during runtime
+        /// regardless of SetLineColorAtStart-propertie's value.
+        /// </summary>
+        [ExposeProperty]
+        public float LightSaberFactor
+        {
+            get { return m_lightSaberFactor; }
+            set { m_lightSaberFactor = value; m_updateLightSaberFactor = true; }
+        }
+        #endregion
 
-		#region methods
-		/// <summary>
-		/// Sets the start and end points - updates the data of the Mesh.
-		/// </summary>
-		public void SetStartAndEndPoints(Vector3 startPoint, Vector3 endPoint)
+        #region methods
+        /// <summary>
+        /// Sets the start and end points - updates the data of the Mesh.
+        /// </summary>
+        public void SetStartAndEndPoints(Vector3 startPoint, Vector3 endPoint)
 		{
 			Vector3[] vertexPositions = {
 				startPoint,
@@ -237,35 +255,43 @@ namespace VolumetricLines
 			GetComponent<Renderer>().material = GetComponent<Renderer>().material;
 			if (SetLinePropertiesAtStart)
 			{
-				GetComponent<Renderer>().sharedMaterial.color = m_lineColor;
-				GetComponent<Renderer>().sharedMaterial.SetFloat("_LineWidth", m_lineWidth);
-			}
+				GetComponent<Renderer>().material.color = m_lineColor;
+				GetComponent<Renderer>().material.SetFloat("_LineWidth", m_lineWidth);
+                GetComponent<Renderer>().material.SetFloat("_LightSaberFactor", m_lightSaberFactor);
+            }
 			else
 			{
-				m_lineColor = GetComponent<Renderer>().sharedMaterial.color;
-				m_lineWidth = GetComponent<Renderer>().sharedMaterial.GetFloat("_LineWidth");
-			}
+				m_lineColor = GetComponent<Renderer>().material.color;
+				m_lineWidth = GetComponent<Renderer>().material.GetFloat("_LineWidth");
+                m_lightSaberFactor = GetComponent<Renderer>().material.GetFloat("_LightSaberFactor");
+            }
 			GetComponent<Renderer>().sharedMaterial.SetFloat("_LineScale", transform.GetGlobalUniformScaleForLineWidth());
 			m_updateLineColor = false;
 			m_updateLineWidth = false;
+            m_updateLightSaberFactor = false;
 		}
 
 		void Update()
 		{
 			if (transform.hasChanged)
 			{
-				GetComponent<Renderer>().sharedMaterial.SetFloat("_LineScale", transform.GetGlobalUniformScaleForLineWidth());
+				GetComponent<Renderer>().material.SetFloat("_LineScale", transform.GetGlobalUniformScaleForLineWidth());
 			}
 			if (m_updateLineColor)
 			{
-				GetComponent<Renderer>().sharedMaterial.color = m_lineColor;
+				GetComponent<Renderer>().material.color = m_lineColor;
 				m_updateLineColor = false;
 			}
 			if (m_updateLineWidth)
 			{
-				GetComponent<Renderer>().sharedMaterial.SetFloat("_LineWidth", m_lineWidth);
+				GetComponent<Renderer>().material.SetFloat("_LineWidth", m_lineWidth);
 				m_updateLineWidth = false;
 			}
+            if (m_updateLightSaberFactor)
+            {
+                GetComponent<Renderer>().material.SetFloat("_LightSaberFactor", m_lightSaberFactor);
+                m_updateLightSaberFactor = false;
+            }
 		}
 	
 		void OnDrawGizmos()
