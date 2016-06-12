@@ -73,6 +73,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 473702}
   - 114: {fileID: 11467226}
+  - 114: {fileID: 11415662}
   - 114: {fileID: 11447824}
   m_Layer: 0
   m_Name: Cat Head
@@ -334,13 +335,26 @@ Light:
   m_ShadowRadius: 0
   m_ShadowAngle: 0
   m_AreaSize: {x: 1, y: 1}
---- !u!114 &11447824
+--- !u!114 &11415662
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 138910}
   m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aef9d96c9bf578843a281b1dc8af5c16, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_leftEye: {fileID: 405246}
+  m_rightEye: {fileID: 430570}
+--- !u!114 &11447824
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 138910}
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fa1f4334a5ca1b942847c348f47ff6d9, type: 3}
   m_Name: 
