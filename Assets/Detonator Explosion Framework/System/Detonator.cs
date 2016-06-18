@@ -56,6 +56,7 @@ public class Detonator : MonoBehaviour {
 	public float duration = Detonator._baseDuration;
 	public float detail = 1f; 
 	public float upwardsBias = 0f;
+    public bool delayedLoop = true;
 	
 	public float destroyTime = 7f; //sorry this is not auto calculated... yet.
 	public bool useWorldSpace = true;
@@ -69,6 +70,7 @@ public class Detonator : MonoBehaviour {
 	public Material sparksMaterial;
 	public Material glowMaterial;
 	public Material heatwaveMaterial;
+   
 		
     private Component[] components;
 
@@ -202,6 +204,7 @@ public class Detonator : MonoBehaviour {
 		}
 	}
 	
+
 	private float _lastExplosionTime = 1000f;
 	void Update () 
     {
