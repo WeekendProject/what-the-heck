@@ -608,6 +608,10 @@ Prefab:
       value: 
       objectReference: {fileID: 11494406, guid: d484152e3fc1d58438d5805506e86c79,
         type: 2}
+    - target: {fileID: 11415662, guid: 212312a724b894a0780a111366c1056e, type: 2}
+      propertyPath: m_attackDuration
+      value: 0.5
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 212312a724b894a0780a111366c1056e, type: 2}
   m_IsPrefabParent: 0
