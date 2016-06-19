@@ -34,10 +34,14 @@ public class LaserPointer : MonoBehaviour
             LaserSelectable selectable = hitObject.GetComponent<LaserSelectable>();
             if (selectable != null)
             {
-                selectable.LaserHit();
+                selectable.Highlight();
                 if (Input.GetMouseButtonDown(0))
                 {
-                    m_catHead.Attack(hitObject);
+                    Explodable explodable = hitObject.GetComponent<Explodable>();
+                    if (explodable != null)
+                    {
+                        m_catHead.Attack(explodable);
+                    }
                 }
             }
         }

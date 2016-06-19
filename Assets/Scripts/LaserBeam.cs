@@ -6,10 +6,10 @@ using VolumetricLines;
 
 public class LaserBeam : MonoBehaviour
 {
-    public void SetTarget(Transform target)
+    public void SetTarget(Vector3 target)
     {
         LineRenderer line = GetComponent<LineRenderer>();
         line.SetPosition(0, transform.parent.position);
-        line.SetPosition(1, target.transform.position);
+        line.SetPosition(1, target);
     }
 }

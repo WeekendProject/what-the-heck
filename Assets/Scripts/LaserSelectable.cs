@@ -33,7 +33,7 @@ public class LaserSelectable : MonoBehaviour
         }
     }
 
-    public void LaserHit()
+    public void Highlight()
     {
         m_highlight = 1.0f;
     }

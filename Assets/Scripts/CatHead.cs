@@ -26,16 +26,16 @@ public class CatHead : MonoBehaviour, IAttacker
         }
     }
 
-    public void Attack(GameObject obj)
+    public void Attack(Explodable explodable)
     {
         m_trackTarget = false;
-        StartCoroutine(AttackCoroutine(obj));
+        StartCoroutine(AttackCoroutine(explodable));
     }
 
-    IEnumerator AttackCoroutine(GameObject obj)
+    IEnumerator AttackCoroutine(Explodable explodable)
     {
         Quaternion startRotation = transform.rotation;
-        Quaternion targetRotation = Quaternion.LookRotation(obj.transform.position - transform.position);
+        Quaternion targetRotation = Quaternion.LookRotation(explodable.laserTarget - transform.position);
 
         // rotate to the target
         float t = 0.0f;
@@ -50,6 +50,6 @@ public class CatHead : MonoBehaviour, IAttacker
         transform.rotation = targetRotation;
 
         // shoot lasers
-        m_lasetShooting.ShootLasersAt(obj.transform);
+        m_lasetShooting.ShootLasersAt(explodable.laserTarget);
     }
 }

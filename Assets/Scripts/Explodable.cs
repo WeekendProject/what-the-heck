@@ -9,6 +9,9 @@ public class Explodable : MonoBehaviour
     [SerializeField]
     GameObject m_exploded;
 
+    [SerializeField]
+    Transform m_laserTarget;
+
     #region Explosions
 
     public void Explode()
@@ -31,6 +34,15 @@ public class Explodable : MonoBehaviour
         {
             Instantiate(m_exploded, transform.position, Quaternion.identity);
         }
+    }
+
+    #endregion
+
+    #region Properties
+
+    public Vector3 laserTarget
+    {
+        get { return m_laserTarget != null ? m_laserTarget.position : transform.position; }
     }
 
     #endregion
