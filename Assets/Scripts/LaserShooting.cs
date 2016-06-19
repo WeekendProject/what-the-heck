@@ -12,10 +12,15 @@ public class LaserShooting : MonoBehaviour {
     [SerializeField]
     Transform m_rightEye;
 
-    public void ShootLasersAt(Vector3 target)
+    [SerializeField]
+    float m_attackDuration = .5f;
+
+    public void ShootLasersAt(Explodable explodable)
     {
-        CreateBeamAt(m_leftEye, target);
-        CreateBeamAt(m_rightEye, target);
+        LaserBeam leftBeam = CreateBeamAt(m_leftEye, explodable.laserTarget);
+        LaserBeam rightBeam = CreateBeamAt(m_rightEye, explodable.laserTarget);
+
+        StartCoroutine(FinishAttack(explodable, leftBeam, rightBeam));
     }
 
     LaserBeam CreateBeamAt(Transform parent, Vector3 target)
@@ -24,5 +29,15 @@ public class LaserShooting : MonoBehaviour {
         beam.transform.parent = parent;
         beam.SetTarget(target);
         return beam;
+    }
+
+    IEnumerator FinishAttack(Explodable explodable, LaserBeam leftBeam, LaserBeam rightBeam)
+    {
+        yield return new WaitForSeconds(m_attackDuration);
+
+        Destroy(leftBeam.gameObject);
+        Destroy(rightBeam.gameObject);
+
+        explodable.Explode();
     }
 }

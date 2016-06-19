@@ -50,6 +50,6 @@ public class CatHead : MonoBehaviour, IAttacker
         transform.rotation = targetRotation;
 
         // shoot lasers
-        m_lasetShooting.ShootLasersAt(explodable.laserTarget);
+        m_lasetShooting.ShootLasersAt(explodable);
     }
 }
