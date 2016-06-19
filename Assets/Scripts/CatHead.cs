@@ -8,11 +8,13 @@ public class CatHead : MonoBehaviour, IAttacker
     Transform m_target;
 
     [SerializeField]
-    bool m_trackTarget = true;    
-    
-    // Use this for initialization
-    void Start()
+    bool m_trackTarget = true;
+
+    LaserShooting m_lasetShooting;
+
+    void Awake()
     {
+        m_lasetShooting = GetComponent<LaserShooting>();
     }
 
     // Update is called once per frame
@@ -35,6 +37,7 @@ public class CatHead : MonoBehaviour, IAttacker
         Quaternion startRotation = transform.rotation;
         Quaternion targetRotation = Quaternion.LookRotation(obj.transform.position - transform.position);
 
+        // rotate to the target
         float t = 0.0f;
         while (t < 1.0f)
         {
@@ -45,5 +48,8 @@ public class CatHead : MonoBehaviour, IAttacker
         }
 
         transform.rotation = targetRotation;
+
+        // shoot lasers
+        m_lasetShooting.ShootLasersAt(obj.transform);
     }
 }
