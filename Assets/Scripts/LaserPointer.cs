@@ -34,7 +34,7 @@ public class LaserPointer : MonoBehaviour
             LaserSelectable selectable = hitObject.GetComponent<LaserSelectable>();
             if (selectable != null)
             {
-                selectable.Highlight();
+                // selectable.sethi
                 if (Input.GetMouseButtonDown(0))
                 {
                     Explodable explodable = hitObject.GetComponent<Explodable>();
